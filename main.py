@@ -7,7 +7,8 @@ text_font = pygame.font.SysFont(None, 30)
 sW = 600
 sH = 400
 screen = pygame.display.set_mode((sW, sH))
-clock = pygame.time.Clock()
+time = pygame.time
+clock = time.Clock()
 running = True
 cash = 0
 dt = 0
@@ -22,18 +23,19 @@ while running:
     screen.fill("black")
     
     mousex, mousey = pygame.mouse.get_pos()
-    #/
+    #/drawtext
     from text import drawtext
-    drawtext(screen, str(mousex), text_font, (255,255,255), 160, 150)
-    drawtext(screen, str(mousey), text_font, (255,255,255), 220, 150)
-    drawtext(screen, "Cash:", text_font, (255,255,255), 160, 250)
-    drawtext(screen, str(cash), text_font, (255,255,255), 220, 250)
-    
+
+    drawtext(screen, "Cash:", text_font, (255,255,255), 20, 20)
+    drawtext(screen, str(cash), text_font, (255,255,255), 80, 20)
+    #/buttons
     button = pygame.draw.rect(screen, (255,0,0), (bX, bY, bW, bH))
+    drawtext(screen, "1+", text_font, (255,255,255), bX+30, bY+12.5)
     lM, MM, RM = pygame.mouse.get_pressed()
     if mousex >= bX and mousex <= bX+bW and mousey >= bY and mousey <= bY+bH:
         if lM is True:
             cash += 1
+            time.delay(150)
 
             
     #/
